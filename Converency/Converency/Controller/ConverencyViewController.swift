@@ -18,9 +18,9 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
     var activeCurrency = 0.0
     
     @IBAction func convertPressed(_ sender: UIButton) {
-        guard let amountText = amountTextField.text else { return }
-        if amountTextField.text != ""{
-            convertedAmountLabel.text = String(Double(amountText)! * activeCurrency)
+        guard let amountText = amountTextField.text, let theAmountText = Double(amountText) else { return }
+        if amountTextField.text != "" {
+            convertedAmountLabel.text = String(format: "%.2f", theAmountText * activeCurrency)
         }
     }
     
@@ -41,32 +41,40 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
         activeCurrency = myValues[row]
     }
     
-   //MARK: - Functions
+    //MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
         amountTextField.keyboardType = .numberPad
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
+        let tapRecognizer = UITapGestureRecognizer()
+        tapRecognizer.addTarget(self, action: #selector(ConverencyViewController.didTapView))
+        self.view.addGestureRecognizer(tapRecognizer)
     }
     
-        func fetchData(){
-            guard let url = URL(string: "https://api.exchangerate-api.com/v4/latest/USD") else { return }
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                do{
-                    guard let data = data else { return }
-                    let myJson = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                    if let rates = myJson["rates"] as? [String: Double]{
-                        for (key, value) in rates{
-                            self.myCurrency.append(key)
-                            self.myValues.append(value)
-                        }
-                        print(self.myCurrency)
-                        print(self.myValues)
+    @objc func didTapView(){
+        self.view.endEditing(true)
+    }
+    
+    //MARK: - JSON Function
+    func fetchData(){
+        guard let url = URL(string: "https://api.exchangerate-api.com/v4/latest/USD") else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            do{
+                guard let data = data else { return }
+                let myJson = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                if let rates = myJson["rates"] as? [String: Double]{
+                    for (key, value) in rates{
+                        self.myCurrency.append(key)
+                        self.myValues.append(value)
                     }
-                }catch{
-                    print(error)
+                    print(self.myCurrency)
+                    print(self.myValues)
                 }
-            }.resume()
-        }
+            }catch{
+                print(error)
+            }
+        }.resume()
+    }
 }
