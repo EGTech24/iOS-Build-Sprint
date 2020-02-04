@@ -13,37 +13,17 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var convertedAmountLabel: UILabel!
     @IBOutlet weak var amountTextField: UITextField!
-    
-    override func viewDidLoad() {
-        fetchData()
-        super.viewDidLoad()
-        amountTextField.keyboardType = .asciiCapableNumberPad
-        currencyPicker.dataSource = self
-        currencyPicker.delegate = self
-    }
-    
     var myCurrency: [String] = []
     var myValues: [Double] = []
-    var activeCurrency: Double = 0
+    var activeCurrency = 0.0
     
-        func fetchData(){
-            guard let url = URL(string: "https://api.exchangerate-api.com/v4/latest/USD") else { return }
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                do{
-                    let myJson = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                    if let rates = myJson["rates"] as? NSDictionary{
-                        for (key, value) in rates{
-                            self.myCurrency.append((key as? String)!)
-                            self.myValues.append((value as? Double)!)
-                        }
-                        print(self.myCurrency)
-                        print(self.myValues)
-                    }
-                }catch{
-                    print(error)
-                }
-            }.resume()
+    @IBAction func convertPressed(_ sender: UIButton) {
+        guard let amountText = amountTextField.text else { return }
+        if amountTextField.text != ""{
+            convertedAmountLabel.text = String(Double(amountText)! * activeCurrency)
         }
+    }
+    
     //MARK: - PickerView Functions
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -60,4 +40,33 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         activeCurrency = myValues[row]
     }
+    
+   //MARK: - Functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fetchData()
+        amountTextField.keyboardType = .numberPad
+        currencyPicker.dataSource = self
+        currencyPicker.delegate = self
+    }
+    
+        func fetchData(){
+            guard let url = URL(string: "https://api.exchangerate-api.com/v4/latest/USD") else { return }
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                do{
+                    guard let data = data else { return }
+                    let myJson = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                    if let rates = myJson["rates"] as? [String: Double]{
+                        for (key, value) in rates{
+                            self.myCurrency.append(key)
+                            self.myValues.append(value)
+                        }
+                        print(self.myCurrency)
+                        print(self.myValues)
+                    }
+                }catch{
+                    print(error)
+                }
+            }.resume()
+        }
 }
