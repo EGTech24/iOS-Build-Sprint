@@ -10,4 +10,5 @@ import Foundation
 
 struct BitCoinData: Codable {
     let buy: Double
+    let symbol: String
 }

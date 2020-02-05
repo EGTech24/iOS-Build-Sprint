@@ -20,7 +20,7 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBAction func convertPressed(_ sender: UIButton) {
         guard let amountText = amountTextField.text, let theAmountText = Double(amountText) else { return }
         if amountTextField.text != "" {
-            convertedAmountLabel.text = String(format: "%.2f", theAmountText * activeCurrency)
+            convertedAmountLabel.text = String(format: "%.2f", theAmountText *  activeCurrency)
         }
     }
     
@@ -33,7 +33,7 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
         tapRecognizer.addTarget(self, action: #selector(ConverencyViewController.didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
     }
-    
+
     @objc func didTapView(){
         self.view.endEditing(true)
     }

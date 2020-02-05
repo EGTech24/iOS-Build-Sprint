@@ -14,17 +14,19 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     //MARK: - Variables/IBOulets
     var locationArray: [String] = []
     var priceArray: [Double] = []
+    var symbolArray: [String] = []
+    var currencySelected = ""
     var activeCurrency = 0.0
     @IBOutlet weak var bitCoinPickerView: UIPickerView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var amountTextField: UITextField!
-    
     @IBAction func convertPressed(_ sender: UIButton) {
         guard let amountText = amountTextField.text, let theAmountText = Double(amountText) else { return }
         if amountTextField.text != "" {
-            priceLabel.text = String(format: "%.2f", theAmountText * activeCurrency)
+            let total = theAmountText * activeCurrency
+            priceLabel.text = "\(currencySelected)\(currencyFormat(amount: total))"
+            }
         }
-    }
     
     //MARK: - Functions
     override func viewDidLoad() {
@@ -39,6 +41,13 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @objc func didTapView(){
         self.view.endEditing(true)
     }
+    
+    func currencyFormat(amount: Double) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter.string(from: NSNumber(value: amount)) ?? ""
+    }
+    
     
     //MARK: - PickerView Functions
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -55,6 +64,7 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         activeCurrency = priceArray[row]
+        currencySelected = symbolArray[row]
     }
     
     //MARK: - JSON Function
@@ -67,6 +77,7 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                 for (key, value) in result{
                     self.locationArray.append(key)
                     self.priceArray.append(value.buy)
+                    self.symbolArray.append(value.symbol)
                     DispatchQueue.main.async {
                         self.bitCoinPickerView.reloadAllComponents()
                     }
@@ -77,3 +88,4 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }.resume()
     }
 }
+
