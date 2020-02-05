@@ -45,6 +45,10 @@
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLx-Zs-2qx">
                                 <rect key="frame" x="0.0" y="597" width="414" height="216"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="r6p-ql-EBt"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JAW-pk-Re8"/>
+                                </connections>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="0.76078431372549016" green="0.93333333333333335" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -104,7 +108,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uoc-MR-7co" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="903" y="825"/>
+            <point key="canvasLocation" x="-7" y="604"/>
         </scene>
     </scenes>
     <resources>

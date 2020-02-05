@@ -27,10 +27,8 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
     //MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
+        fetchCurrencyData()
         amountTextField.keyboardType = .numberPad
-        currencyPicker.dataSource = self
-        currencyPicker.delegate = self
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(ConverencyViewController.didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
@@ -58,7 +56,7 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
     
     //MARK: - JSON Function
-    func fetchData(){
+    func fetchCurrencyData(){
         guard let url = URL(string: "https://api.exchangerate-api.com/v4/latest/USD") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             do{
@@ -68,7 +66,9 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
                     for (key, value) in rates{
                         self.myCurrency.append(key)
                         self.myValues.append(value)
-                        print(key, value)
+                        DispatchQueue.main.async {
+                            self.currencyPicker.reloadAllComponents()
+                        }
                     }
                 }
             }catch{

@@ -28,11 +28,9 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     //MARK: - Functions
     override func viewDidLoad() {
-        fetchData()
         super.viewDidLoad()
+        fetchCryptoData()
         amountTextField.keyboardType = .numberPad
-        bitCoinPickerView.dataSource = self
-        bitCoinPickerView.delegate = self
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(ConverencyViewController.didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
@@ -60,7 +58,7 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     //MARK: - JSON Function
-    func fetchData(){
+    func fetchCryptoData(){
         guard let url = URL(string: "https://blockchain.info/ticker") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             do{
@@ -69,6 +67,9 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                 for (key, value) in result{
                     self.locationArray.append(key)
                     self.priceArray.append(value.buy)
+                    DispatchQueue.main.async {
+                        self.bitCoinPickerView.reloadAllComponents()
+                    }
                 }
             }catch{
                 print(error)
