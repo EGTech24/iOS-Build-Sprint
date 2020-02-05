@@ -1,36 +1,38 @@
 //
-//  ConverencyViewController.swift
+//  BitCoinViewController.swift
 //  Converency
 //
-//  Created by Enrique Gongora on 2/3/20.
+//  Created by Enrique Gongora on 2/4/20.
 //  Copyright © 2020 Enrique Gongora. All rights reserved.
 //
 
 import UIKit
 
-class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
-    //MARK: - Variables/IBOutlets
-    @IBOutlet weak var currencyPicker: UIPickerView!
-    @IBOutlet weak var convertedAmountLabel: UILabel!
-    @IBOutlet weak var amountTextField: UITextField!
-    var myCurrency: [String] = []
-    var myValues: [Double] = []
+class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    
+    //MARK: - Variables/IBOulets
+    var locationArray: [String] = []
+    var priceArray: [Double] = []
     var activeCurrency = 0.0
+    @IBOutlet weak var bitCoinPickerView: UIPickerView!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var amountTextField: UITextField!
     
     @IBAction func convertPressed(_ sender: UIButton) {
         guard let amountText = amountTextField.text, let theAmountText = Double(amountText) else { return }
         if amountTextField.text != "" {
-            convertedAmountLabel.text = String(format: "%.2f", theAmountText * activeCurrency)
+            priceLabel.text = String(format: "%.2f", theAmountText * activeCurrency)
         }
     }
     
     //MARK: - Functions
     override func viewDidLoad() {
-        super.viewDidLoad()
         fetchData()
+        super.viewDidLoad()
         amountTextField.keyboardType = .numberPad
-        currencyPicker.dataSource = self
-        currencyPicker.delegate = self
+        bitCoinPickerView.dataSource = self
+        bitCoinPickerView.delegate = self
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(ConverencyViewController.didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
@@ -46,30 +48,27 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return myCurrency.count
+        return locationArray.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return myCurrency[row]
+        return locationArray[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        activeCurrency = myValues[row]
+        activeCurrency = priceArray[row]
     }
     
     //MARK: - JSON Function
     func fetchData(){
-        guard let url = URL(string: "https://api.exchangerate-api.com/v4/latest/USD") else { return }
+        guard let url = URL(string: "https://blockchain.info/ticker") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             do{
                 guard let data = data else { return }
-                let myJson = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                if let rates = myJson["rates"] as? [String: Double]{
-                    for (key, value) in rates{
-                        self.myCurrency.append(key)
-                        self.myValues.append(value)
-                        print(key, value)
-                    }
+                let result = try JSONDecoder().decode([String: BitCoinData].self, from: data)
+                for (key, value) in result{
+                    self.locationArray.append(key)
+                    self.priceArray.append(value.buy)
                 }
             }catch{
                 print(error)
