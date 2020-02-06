@@ -16,11 +16,11 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
     var myCurrency: [String] = []
     var myValues: [Double] = []
     var activeCurrency = 0.0
-    
     @IBAction func convertPressed(_ sender: UIButton) {
         guard let amountText = amountTextField.text, let theAmountText = Double(amountText) else { return }
         if amountTextField.text != "" {
-            convertedAmountLabel.text = String(format: "%.2f", theAmountText *  activeCurrency)
+            let total = ((theAmountText * activeCurrency) * 100 ).rounded()/100
+            convertedAmountLabel.text = currencyFormat(amount: total)
         }
     }
     
@@ -36,6 +36,12 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
 
     @objc func didTapView(){
         self.view.endEditing(true)
+    }
+    
+    func currencyFormat(amount: Double) -> String{
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter.string(from: NSNumber(value: amount)) ?? ""
     }
     
     //MARK: - PickerView Functions

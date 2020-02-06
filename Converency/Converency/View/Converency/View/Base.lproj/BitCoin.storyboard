@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="X7Q-rA-ynR">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--BitCoin-->
+        <scene sceneID="9lh-vX-ySK">
+            <objects>
+                <viewController id="X7Q-rA-ynR" customClass="BitCoinViewController" customModule="Converency" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WV8-dS-ZXP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BitCoinImage" translatesAutoresizingMaskIntoConstraints="NO" id="s1C-B4-ng6">
+                                <rect key="frame" x="20" y="94" width="374" height="161.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="s1C-B4-ng6" secondAttribute="height" multiplier="373:161" id="crn-kq-mes"/>
+                                </constraints>
+                            </imageView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4F-pj-rAs">
+                                <rect key="frame" x="0.0" y="597" width="414" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="X7Q-rA-ynR" id="OnD-gA-Ch3"/>
+                                    <outlet property="delegate" destination="X7Q-rA-ynR" id="GXa-FH-nsp"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc2-D1-d1V">
+                                <rect key="frame" x="20" y="351" width="374" height="33.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1q1-mT-cDD">
+                                <rect key="frame" x="20" y="555" width="374" height="34"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9il-Gc-mny">
+                                        <rect key="frame" x="0.0" y="0.0" width="301" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SL1-SU-sDI">
+                                        <rect key="frame" x="309" y="0.0" width="65" height="34"/>
+                                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Convert">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="convertPressed:" destination="X7Q-rA-ynR" eventType="touchUpInside" id="nWo-vo-FaC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.76078431372549016" green="0.93333333333333335" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="DtC-JR-7I2" firstAttribute="trailing" secondItem="s1C-B4-ng6" secondAttribute="trailing" constant="20" id="4mn-Qn-flt"/>
+                            <constraint firstItem="DtC-JR-7I2" firstAttribute="trailing" secondItem="kc2-D1-d1V" secondAttribute="trailing" constant="20" id="5QA-6a-63z"/>
+                            <constraint firstItem="z4F-pj-rAs" firstAttribute="trailing" secondItem="DtC-JR-7I2" secondAttribute="trailing" id="836-YH-t6h"/>
+                            <constraint firstItem="z4F-pj-rAs" firstAttribute="top" secondItem="1q1-mT-cDD" secondAttribute="bottom" constant="8" id="EeB-pB-LM2"/>
+                            <constraint firstItem="s1C-B4-ng6" firstAttribute="top" secondItem="DtC-JR-7I2" secondAttribute="top" constant="50" id="Jv5-Dc-Bg6"/>
+                            <constraint firstItem="kc2-D1-d1V" firstAttribute="leading" secondItem="DtC-JR-7I2" secondAttribute="leading" constant="20" id="MXL-Ma-bhS"/>
+                            <constraint firstItem="1q1-mT-cDD" firstAttribute="leading" secondItem="DtC-JR-7I2" secondAttribute="leading" constant="20" id="PsA-VN-Jzr"/>
+                            <constraint firstItem="DtC-JR-7I2" firstAttribute="trailing" secondItem="1q1-mT-cDD" secondAttribute="trailing" constant="20" id="Z4c-Ua-oaJ"/>
+                            <constraint firstItem="z4F-pj-rAs" firstAttribute="leading" secondItem="DtC-JR-7I2" secondAttribute="leading" id="auh-m8-KDJ"/>
+                            <constraint firstItem="kc2-D1-d1V" firstAttribute="top" secondItem="s1C-B4-ng6" secondAttribute="bottom" constant="95.5" id="sQl-il-yvF"/>
+                            <constraint firstItem="s1C-B4-ng6" firstAttribute="leading" secondItem="DtC-JR-7I2" secondAttribute="leading" constant="20" id="u64-QP-PZO"/>
+                            <constraint firstItem="z4F-pj-rAs" firstAttribute="bottom" secondItem="DtC-JR-7I2" secondAttribute="bottom" id="y0I-TS-fUV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DtC-JR-7I2"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="BitCoin" image="bitcoinsign.square.fill" catalog="system" selectedImage="bitcoinsign.square.fill" id="8th-Yq-KmZ"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="amountTextField" destination="9il-Gc-mny" id="25A-37-BLc"/>
+                        <outlet property="bitCoinPickerView" destination="z4F-pj-rAs" id="z61-wz-w5x"/>
+                        <outlet property="priceLabel" destination="kc2-D1-d1V" id="TfM-ud-xPZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ysf-OZ-wk7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="902.89855072463774" y="825"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BitCoinImage" width="3601" height="3600"/>
+        <image name="bitcoinsign.square.fill" catalog="system" width="64" height="56"/>
+    </resources>
+</document>
