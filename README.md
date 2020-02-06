@@ -1,3 +1,3 @@
 # iOS-Build-Sprint
 
-![] (Converency/Converency/Assets.xcassets/Logo.imageset/Logo.png)
+![](Converency/Converency/Assets.xcassets/Logo.imageset/Logo.png)
