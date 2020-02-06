@@ -35,6 +35,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jL-gd-eZw">
                                         <rect key="frame" x="309" y="0.0" width="65" height="34"/>
                                         <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Convert"/>
                                         <connections>
                                             <action selector="convertPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H12-dh-WRC"/>
@@ -73,6 +74,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="amountTextField" destination="lQl-fh-Ikr" id="kdD-p5-UQs"/>
+                        <outlet property="convertButton" destination="4jL-gd-eZw" id="Hp0-Bt-erd"/>
                         <outlet property="convertedAmountLabel" destination="KPh-nn-bNw" id="6sU-vg-Fgb"/>
                         <outlet property="currencyPicker" destination="hLx-Zs-2qx" id="mot-wh-iXR"/>
                     </connections>

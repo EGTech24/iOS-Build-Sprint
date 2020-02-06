@@ -78,6 +78,7 @@
                     <connections>
                         <outlet property="amountTextField" destination="9il-Gc-mny" id="25A-37-BLc"/>
                         <outlet property="bitCoinPickerView" destination="z4F-pj-rAs" id="z61-wz-w5x"/>
+                        <outlet property="convertButton" destination="SL1-SU-sDI" id="crw-Fe-Hqd"/>
                         <outlet property="priceLabel" destination="kc2-D1-d1V" id="TfM-ud-xPZ"/>
                     </connections>
                 </viewController>

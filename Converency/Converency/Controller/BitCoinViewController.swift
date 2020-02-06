@@ -20,6 +20,7 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var bitCoinPickerView: UIPickerView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var convertButton: UIButton!
     @IBAction func convertPressed(_ sender: UIButton) {
         guard let amountText = amountTextField.text, let theAmountText = Double(amountText) else { return }
         if amountTextField.text != "" {
@@ -32,10 +33,13 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCryptoData()
-        amountTextField.keyboardType = .numberPad
+        amountTextField.keyboardType = .decimalPad
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(ConverencyViewController.didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
+        convertButton.layer.cornerRadius = 5
+        convertButton.clipsToBounds = true
+        convertButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     
     @objc func didTapView(){

@@ -10,12 +10,13 @@ import UIKit
 
 class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
     //MARK: - Variables/IBOutlets
-    @IBOutlet weak var currencyPicker: UIPickerView!
-    @IBOutlet weak var convertedAmountLabel: UILabel!
-    @IBOutlet weak var amountTextField: UITextField!
     var myCurrency: [String] = []
     var myValues: [Double] = []
     var activeCurrency = 0.0
+    @IBOutlet weak var currencyPicker: UIPickerView!
+    @IBOutlet weak var convertedAmountLabel: UILabel!
+    @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var convertButton: UIButton!
     @IBAction func convertPressed(_ sender: UIButton) {
         guard let amountText = amountTextField.text, let theAmountText = Double(amountText) else { return }
         if amountTextField.text != "" {
@@ -28,10 +29,13 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCurrencyData()
-        amountTextField.keyboardType = .numberPad
+        amountTextField.keyboardType = .decimalPad
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(ConverencyViewController.didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
+        convertButton.layer.cornerRadius = 5
+        convertButton.clipsToBounds = true
+        convertButton.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0, right: 10.0)
     }
 
     @objc func didTapView(){
