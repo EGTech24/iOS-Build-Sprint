@@ -29,30 +29,19 @@
                                 </connections>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc2-D1-d1V">
-                                <rect key="frame" x="20" y="351" width="374" height="33.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <rect key="frame" x="20" y="351" width="374" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1q1-mT-cDD">
                                 <rect key="frame" x="20" y="555" width="374" height="34"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9il-Gc-mny">
-                                        <rect key="frame" x="0.0" y="0.0" width="301" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount:" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9il-Gc-mny">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SL1-SU-sDI">
-                                        <rect key="frame" x="309" y="0.0" width="65" height="34"/>
-                                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Convert">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="convertPressed:" destination="X7Q-rA-ynR" eventType="touchUpInside" id="nWo-vo-FaC"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -78,7 +67,6 @@
                     <connections>
                         <outlet property="amountTextField" destination="9il-Gc-mny" id="25A-37-BLc"/>
                         <outlet property="bitCoinPickerView" destination="z4F-pj-rAs" id="z61-wz-w5x"/>
-                        <outlet property="convertButton" destination="SL1-SU-sDI" id="crw-Fe-Hqd"/>
                         <outlet property="priceLabel" destination="kc2-D1-d1V" id="TfM-ud-xPZ"/>
                     </connections>
                 </viewController>

@@ -16,14 +16,6 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var convertedAmountLabel: UILabel!
     @IBOutlet weak var amountTextField: UITextField!
-    @IBOutlet weak var convertButton: UIButton!
-    @IBAction func convertPressed(_ sender: UIButton) {
-        guard let amountText = amountTextField.text, let theAmountText = Double(amountText) else { return }
-        if amountTextField.text != "" {
-            let total = ((theAmountText * activeCurrency) * 100 ).rounded()/100
-            convertedAmountLabel.text = currencyFormat(amount: total)
-        }
-    }
     
     //MARK: - Functions
     override func viewDidLoad() {
@@ -33,9 +25,6 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(ConverencyViewController.didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
-        convertButton.layer.cornerRadius = 5
-        convertButton.clipsToBounds = true
-        convertButton.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0, right: 10.0)
     }
 
     @objc func didTapView(){
@@ -46,6 +35,14 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         return numberFormatter.string(from: NSNumber(value: amount)) ?? ""
+    }
+    
+    func updateViews(input: Double){
+        guard let amountText = amountTextField.text, let theAmountText = Double(amountText) else { return }
+        if amountTextField.text != "" {
+            let total = ((theAmountText * activeCurrency) * 100 ).rounded()/100
+            convertedAmountLabel.text = currencyFormat(amount: total)
+        }
     }
     
     //MARK: - PickerView Functions
@@ -63,6 +60,7 @@ class ConverencyViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         activeCurrency = myValues[row]
+        updateViews(input: activeCurrency)
     }
     
     //MARK: - JSON Function

@@ -20,14 +20,6 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var bitCoinPickerView: UIPickerView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var amountTextField: UITextField!
-    @IBOutlet weak var convertButton: UIButton!
-    @IBAction func convertPressed(_ sender: UIButton) {
-        guard let amountText = amountTextField.text, let theAmountText = Double(amountText) else { return }
-        if amountTextField.text != "" {
-            let total = theAmountText * activeCurrency
-            priceLabel.text = "\(currencySelected)\(currencyFormat(amount: total))"
-            }
-        }
     
     //MARK: - Functions
     override func viewDidLoad() {
@@ -37,9 +29,6 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(ConverencyViewController.didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
-        convertButton.layer.cornerRadius = 5
-        convertButton.clipsToBounds = true
-        convertButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     
     @objc func didTapView(){
@@ -50,6 +39,14 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         return numberFormatter.string(from: NSNumber(value: amount)) ?? ""
+    }
+    
+    func updateViews(input: Double) {
+        guard let amountText = amountTextField.text, let theAmountText = Double(amountText) else { return }
+        if amountTextField.text != "" {
+            let total = theAmountText * activeCurrency
+            priceLabel.text = "\(currencySelected)\(currencyFormat(amount: total))"
+        }
     }
     
     
@@ -69,6 +66,7 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         activeCurrency = priceArray[row]
         currencySelected = symbolArray[row]
+        updateViews(input: activeCurrency)
     }
     
     //MARK: - JSON Function
