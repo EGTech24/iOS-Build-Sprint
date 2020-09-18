@@ -1,9 +1,9 @@
 # iOS-Build-Sprint
+Converency is an easy to use app for getting up-to-date exchange rates on foreign currencies & cryptocurrencies.
+
 <p align="center">
   <img width="500" src="Converency/Converency/Assets.xcassets/Logo.imageset/Logo.png">
 </p>
-
-Hello, and welcome to __Converency__- an easy to use app for getting up-to-date exchange rates. Not only for foreign currencies, but cryptocurrencies as well. 
 
 # Screenshots
 <img align="left" src="Images/ConverencyScreenShot.png"> 
