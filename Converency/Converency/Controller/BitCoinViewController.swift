@@ -24,7 +24,23 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     //MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchCryptoData()
+        fetchCryptoData { (results) in
+            switch results {
+            case .success(let bitcoin):
+                bitcoin.forEach { (data) in
+                    self.symbolArray.append(data.value.symbol)
+                    self.priceArray.append(data.value.buy)
+                    self.locationArray.append(data.key)
+                    DispatchQueue.main.async {
+                        self.bitCoinPickerView.reloadAllComponents()
+                    }
+                }
+            case .failure(let error):
+                print("Failed to fetch bitcoin data: ", error)
+            }
+        }
+        
+        
         amountTextField.keyboardType = .decimalPad
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(ConverencyViewController.didTapView))
@@ -70,22 +86,20 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     //MARK: - JSON Function
-    func fetchCryptoData(){
+    func fetchCryptoData(completion: @escaping (Result<Bitcoin, Error>) -> ()) {
         guard let url = URL(string: "https://blockchain.info/ticker") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            do{
-                guard let data = data else { return }
-                let result = try JSONDecoder().decode([String: BitCoinData].self, from: data)
-                for (key, value) in result{
-                    self.locationArray.append(key)
-                    self.priceArray.append(value.buy)
-                    self.symbolArray.append(value.symbol)
-                    DispatchQueue.main.async {
-                        self.bitCoinPickerView.reloadAllComponents()
-                    }
-                }
-            }catch{
-                print(error)
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let safeData = data else { return }
+            
+            do {
+                let bitcoin = try JSONDecoder().decode(Bitcoin.self, from: safeData)
+                completion(.success(bitcoin))
+            } catch let jsonError {
+                completion(.failure(jsonError))
             }
         }.resume()
     }

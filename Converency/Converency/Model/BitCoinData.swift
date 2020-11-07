@@ -12,3 +12,5 @@ struct BitCoinData: Codable {
     let buy: Double
     let symbol: String
 }
+
+typealias Bitcoin = [String : BitCoinData]
