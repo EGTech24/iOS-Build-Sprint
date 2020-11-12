@@ -104,4 +104,3 @@ class BitCoinViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }.resume()
     }
 }
-

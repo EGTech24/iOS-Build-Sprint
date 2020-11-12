@@ -17,7 +17,18 @@
 		5C706F2A23E895A900DBE380 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C706F2823E895A900DBE380 /* LaunchScreen.storyboard */; };
 		5C706F3423E89DE300DBE380 /* ConverencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C706F3323E89DE300DBE380 /* ConverencyViewController.swift */; };
 		5C706F3B23E8C3C600DBE380 /* CurrencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C706F3A23E8C3C600DBE380 /* CurrencyData.swift */; };
+		5CB87CF4255CB54800620A30 /* ConverencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB87CF3255CB54800620A30 /* ConverencyTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5CB87CF6255CB54800620A30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C706F1223E895A800DBE380 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C706F1923E895A800DBE380;
+			remoteInfo = Converency;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5C1417CC23EA0B26004FD641 /* BitCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitCoinViewController.swift; sourceTree = "<group>"; };
@@ -32,10 +43,20 @@
 		5C706F2B23E895A900DBE380 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C706F3323E89DE300DBE380 /* ConverencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverencyViewController.swift; sourceTree = "<group>"; };
 		5C706F3A23E8C3C600DBE380 /* CurrencyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyData.swift; sourceTree = "<group>"; };
+		5CB87CF1255CB54800620A30 /* ConverencyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConverencyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CB87CF3255CB54800620A30 /* ConverencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverencyTests.swift; sourceTree = "<group>"; };
+		5CB87CF5255CB54800620A30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5C706F1723E895A800DBE380 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5CB87CEE255CB54800620A30 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -49,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				5C706F1C23E895A800DBE380 /* Converency */,
+				5CB87CF2255CB54800620A30 /* ConverencyTests */,
 				5C706F1B23E895A800DBE380 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				5C706F1A23E895A800DBE380 /* Converency.app */,
+				5CB87CF1255CB54800620A30 /* ConverencyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +126,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		5CB87CF2255CB54800620A30 /* ConverencyTests */ = {
+			isa = PBXGroup;
+			children = (
+				5CB87CF3255CB54800620A30 /* ConverencyTests.swift */,
+				5CB87CF5255CB54800620A30 /* Info.plist */,
+			);
+			path = ConverencyTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -123,18 +155,40 @@
 			productReference = 5C706F1A23E895A800DBE380 /* Converency.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5CB87CF0255CB54800620A30 /* ConverencyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5CB87CFA255CB54800620A30 /* Build configuration list for PBXNativeTarget "ConverencyTests" */;
+			buildPhases = (
+				5CB87CED255CB54800620A30 /* Sources */,
+				5CB87CEE255CB54800620A30 /* Frameworks */,
+				5CB87CEF255CB54800620A30 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5CB87CF7255CB54800620A30 /* PBXTargetDependency */,
+			);
+			name = ConverencyTests;
+			productName = ConverencyTests;
+			productReference = 5CB87CF1255CB54800620A30 /* ConverencyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		5C706F1223E895A800DBE380 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Enrique Gongora";
 				TargetAttributes = {
 					5C706F1923E895A800DBE380 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					5CB87CF0255CB54800620A30 = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = 5C706F1923E895A800DBE380;
 					};
 				};
 			};
@@ -152,6 +206,7 @@
 			projectRoot = "";
 			targets = (
 				5C706F1923E895A800DBE380 /* Converency */,
+				5CB87CF0255CB54800620A30 /* ConverencyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -165,6 +220,13 @@
 				5C706F2723E895A900DBE380 /* Assets.xcassets in Resources */,
 				5C1417D023EA1186004FD641 /* BitCoin.storyboard in Resources */,
 				5C706F2523E895A800DBE380 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5CB87CEF255CB54800620A30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +246,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5CB87CED255CB54800620A30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CB87CF4255CB54800620A30 /* ConverencyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5CB87CF7255CB54800620A30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C706F1923E895A800DBE380 /* Converency */;
+			targetProxy = 5CB87CF6255CB54800620A30 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5C1417CE23EA1186004FD641 /* BitCoin.storyboard */ = {
@@ -368,6 +446,50 @@
 			};
 			name = Release;
 		};
+		5CB87CF8255CB54800620A30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T8B9LKFKJY;
+				INFOPLIST_FILE = ConverencyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.enriquegongora.ConverencyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Converency.app/Converency";
+			};
+			name = Debug;
+		};
+		5CB87CF9255CB54800620A30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T8B9LKFKJY;
+				INFOPLIST_FILE = ConverencyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.enriquegongora.ConverencyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Converency.app/Converency";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -385,6 +507,15 @@
 			buildConfigurations = (
 				5C706F2F23E895A900DBE380 /* Debug */,
 				5C706F3023E895A900DBE380 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5CB87CFA255CB54800620A30 /* Build configuration list for PBXNativeTarget "ConverencyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5CB87CF8255CB54800620A30 /* Debug */,
+				5CB87CF9255CB54800620A30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
